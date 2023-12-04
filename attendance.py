@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.options import Options
 import time
+import logininfo
 
 # Start a Firefox window in the Headless mode.
 options = webdriver.FirefoxOptions()
@@ -20,10 +21,10 @@ WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.NAME, "user[email]"))
 )
 email = driver.find_element(By.NAME, "user[email]")
-email.send_keys("micah.a.awtrey@gmail.com")
+email.send_keys(logininfo.username)
 
 password = driver.find_element(By.NAME, "user[password]")
-password.send_keys("@DcIf4103842644@")
+password.send_keys(logininfo.password)
 password.send_keys(Keys.RETURN)
 
 # Makes the code wait one second to allow the login information to load.
@@ -46,7 +47,7 @@ while x != 1:
     try:
         # Looks for the token element for 1 second. If it is not found,
         # a TimeoutException error is thrown, sending it to the except.
-        WebDriverWait(driver, 0.6).until(
+        WebDriverWait(driver, 0.3).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/main/div/div/form/div/div/div[1]/p[2]/span"))
         )
         # Creates a variable that holds the token location from the HTML.
