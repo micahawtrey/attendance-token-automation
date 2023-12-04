@@ -46,7 +46,7 @@ while x != 1:
     try:
         # Looks for the token element for 1 second. If it is not found,
         # a TimeoutException error is thrown, sending it to the except.
-        WebDriverWait(driver, 1).until(
+        WebDriverWait(driver, 0.6).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/main/div/div/form/div/div/div[1]/p[2]/span"))
         )
         # Creates a variable that holds the token location from the HTML.
